@@ -1,3 +1,5 @@
+// compile using g++ as
+// $ g++ Problem3.cpp -lpthread -o output
 #include <iostream>
 #include <thread>
 #include <mutex>
@@ -71,11 +73,8 @@ void smoker(int s)
         max_run--;
     }
 }
-
-int main()
+void run_threads()
 {
-    srand(clock());
-    cout << "Cigarette Smoker Problem using agent \n";
     thread t1(agent);
     thread t2(smoker, 1);
     thread t3(smoker, 2);
@@ -84,5 +83,12 @@ int main()
     t2.join();
     t3.join();
     t4.join();
+}
+
+int main()
+{
+    srand(clock());
+    cout << "Cigarette Smoker Problem using agent \n";
+    run_threads();
     return 0;
 }

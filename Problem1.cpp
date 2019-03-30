@@ -59,19 +59,23 @@ void consumer()
     {
         wait("full");
         m.lock();
-        cout << "Consumed-> " << number << "\n";
+        cout << "Consumed<- " << number << "\n";
         number -= 1;
         maximum -= 1;
         m.unlock();
         signal("empty");
     }
 }
-int main()
+void run_threads()
 {
-    cout << "Producer Consumer using semaphores \n";
     thread t1(producer);
     thread t2(consumer);
     t1.join();
     t2.join();
+}
+int main()
+{
+    cout << "Producer Consumer using semaphores \n";
+    run_threads();
     return 0;
 }

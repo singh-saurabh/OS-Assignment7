@@ -1,3 +1,5 @@
+// compile using g++ as
+// $ g++ Problem4.cpp -lpthread -o output
 #include <iostream>
 #include <thread>
 #include <mutex>
@@ -62,12 +64,17 @@ void customer()
     }
 }
 
-int main()
+void run_threads()
 {
-    cout << "Sleeping Barber problem\n";
     thread customer_thread(customer);
     thread barber_thread(barber);
     customer_thread.join();
     barber_thread.join();
+}
+
+int main()
+{
+    cout << "Sleeping Barber problem\n";
+    run_threads();
     return 0;
 }

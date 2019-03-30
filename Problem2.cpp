@@ -53,13 +53,17 @@ void reader()
         max_run--;
     }
 }
-
-int main()
+void run_threads()
 {
-    cout << "Starve free reader writer solution \n";
     thread writer_thread(writer);
     thread reader_thread(reader);
     writer_thread.join();
     reader_thread.join();
+}
+
+int main()
+{
+    cout << "Starve free reader writer solution \n";
+    run_threads();
     return 0;
 }
